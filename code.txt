@@ -1,0 +1,48 @@
+goal:I want to create a typescript home page inside "(portfolio)/contact/page.tsx" that looks exactly like the image provided in next.js app router. 
+Use GSAP for subtle animations. Make sure it is responsive for mobile and tablet view.
+
+
+=== Folder Structure ===
+```
+├── app
+│   ├── (portfolio)
+│   │   ├── about
+│   │   │   └── page.tsx
+│   │   ├── contact
+│   │   │   └── page.tsx
+│   │   ├── education
+│   │   │   └── page.tsx
+│   │   ├── projects
+│   │   │   └── page.tsx
+│   │   ├── skills
+│   │   │   └── page.tsx
+│   │   └── page.tsx
+│   ├── favicon.ico
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+├── components
+│   └── layout
+│       ├── Footer.tsx
+│       ├── Navbar.tsx
+│       └── sidebar.tsx
+├── data
+│   ├── experience.ts
+│   ├── personal.ts
+│   ├── projects.ts
+│   └── skills.ts
+├── public
+│   ├── file.svg
+│   ├── globe.svg
+│   ├── next.svg
+│   ├── vercel.svg
+│   └── window.svg
+├── .gitignore
+├── AGENTS.md
+├── README.md
+├── eslint.config.mjs
+├── next.config.ts
+├── package-lock.json
+├── package.json
+└── tsconfig.json
+```
