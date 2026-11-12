@@ -112,7 +112,7 @@ export default function SkillsPage() {
   }, []);
 
   return (
-    <section
+    <section id="skills"
       ref={sectionRef}
       className="min-h-screen bg-white px-5 py-16 sm:px-8 lg:px-12"
     >

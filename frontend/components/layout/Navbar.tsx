@@ -1,73 +1,90 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import Link from "next/link";
-import { User, ArrowRight } from "lucide-react";
+import React, { useRef, useState } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import Sidebar from './sidebar';
 
-interface NavItem {
-  label: string;
-  href: string;
-}
+gsap.registerPlugin(useGSAP);
 
-const navItems: NavItem[] = [
-  { label: "About", href: "/" },
-  { label: "Skills", href: "/skills" },
-  { label: "Projects", href: "/projects" },
-  { label: "Education", href: "/education" },
-  { label: "Experience", href: "/experience" }
+const navLinks = [
+  { name: 'About', href: '#about' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'Projects', href: '#projects' },
+  { name: 'Education', href: '#education' },
+  { name: 'Contact', href: '#contact' },
 ];
 
 export default function Navbar() {
-  const [activeTab, setActiveTab] = useState<string>("About");
+  const navRef = useRef<HTMLElement | null>(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  useGSAP(
+    () => {
+      gsap.from(navRef.current, {
+        y: -30,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+      });
+    },
+    { scope: navRef }
+  );
+
+  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const targetId = href.replace('#', '');
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
-    <header className="w-full bg-white border-b border-gray-100 px-6 py-4">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        {/* Logo Section */}
-        <Link href="/" className="flex items-center gap-2 font-semibold text-xl text-gray-900 tracking-tight">
-          <span>Muhamad Masood</span>
-          <span className="w-2.5 h-2.5 rounded-full bg-gradient-to-tr from-purple-500 via-pink-500 to-orange-400 inline-block" />
-        </Link>
-
-        {/* Navigation Links */}
-        <nav className="hidden md:flex items-center space-x-8">
-          {navItems.map((item) => {
-            const isActive = activeTab === item.label;
-            return (
-              <Link
-                key={item.label}
-                href={item.href}
-                onClick={() => setActiveTab(item.label)}
-                className={`relative py-1 text-sm transition-colors duration-200 ${
-                  isActive
-                    ? "text-gray-900 font-semibold"
-                    : "text-gray-500 hover:text-gray-900 font-medium"
-                }`}
-              >
-                {item.label}
-                {isActive && (
-                  <span className="absolute bottom-0 left-0 w-full h-[2px] bg-gray-900 rounded-full" />
-                )}
-              </Link>
-            );
-          })}
-        </nav>
-
-        {/* Right Action Buttons */}
-        <div className="flex items-center space-x-3">
-          {/* Contact Button */}
-          <Link
-            href="/contact"
-            className="flex items-center gap-2 bg-black text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-gray-800 transition-all shadow-sm"
+    <>
+      <header
+        ref={navRef}
+        className="sticky top-0 z-40 w-full bg-white/90 backdrop-blur-md border-b border-neutral-200"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          {/* Logo / Brand Name */}
+          <a
+            href="#home"
+            onClick={(e) => handleScrollTo(e, '#home')}
+            className="font-black text-lg tracking-tight text-neutral-950 uppercase"
           >
-            <span>Contact</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+            Muhammad Masood
+          </a>
 
-         
-         
+          {/* Desktop Nav Links */}
+          <nav className="hidden md:flex items-center space-x-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={(e) => handleScrollTo(e, link.href)}
+                className="font-mono text-xs uppercase tracking-widest text-neutral-600 hover:text-neutral-950 transition-colors cursor-pointer"
+              >
+                {link.name}
+              </a>
+            ))}
+          </nav>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsSidebarOpen(true)}
+            aria-label="Open Menu"
+            className="md:hidden p-2 text-neutral-900 focus:outline-none cursor-pointer"
+          >
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
         </div>
-      </div>
-    </header>
+      </header>
+
+      {/* Mobile Drawer Sidebar */}
+      <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} links={navLinks} />
+    </>
   );
 }

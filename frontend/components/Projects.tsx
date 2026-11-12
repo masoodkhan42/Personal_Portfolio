@@ -77,7 +77,7 @@ export default function ProjectsPage() {
   }, []);
 
   return (
-    <section
+    <section id="projects"
       ref={sectionRef}
       className="min-h-screen bg-white px-5 py-14 sm:px-8 sm:py-16 lg:px-12"
     >

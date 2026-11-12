@@ -201,7 +201,7 @@ export default function ExperiencePage() {
   }, []);
 
   return (
-    <main
+    <main id="experience"
       ref={sectionRef}
       className="min-h-screen w-full bg-white px-5 pb-20 pt-14 sm:px-8 sm:pt-16 lg:px-10"
     >

@@ -194,7 +194,7 @@ export default function Education() {
   }, []);
 
   return (
-    <section
+    <section id="education"
       ref={sectionRef}
       className="min-h-screen bg-[#f7f8fa] px-5 py-16 sm:px-8 sm:py-20 lg:px-12"
     >
