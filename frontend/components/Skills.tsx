@@ -73,7 +73,6 @@ const categories = [
       "Git & GitHub",
       "Postman",
       "VS Code",
-      "Linux Basics",
     ],
   },
 ];
