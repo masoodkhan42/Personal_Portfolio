@@ -18,6 +18,7 @@ const technologies = [
   "Python",
   "OpenAI Agents SDK",
   "Next.js",
+  "FastApi",
   "REST APIs",
   "Tailwind CSS",
 ];
@@ -113,7 +114,7 @@ export default function ProjectsPage() {
           </span>
 
           <h1 className="mt-3 text-3xl font-bold tracking-tight text-black sm:text-4xl">
-            Building with AI
+            AI-Powered Travel Planner
           </h1>
         </div>
 

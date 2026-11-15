@@ -2,6 +2,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
+import { Toaster } from "sonner";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export const metadata: Metadata = {
   title: "Muhammad Masood | Backend Developer",
@@ -20,6 +22,13 @@ export default function RootLayout({
       <body>
         <Navbar />
         {children}
+        <Toaster
+          position="top-right"
+          richColors
+          closeButton
+          duration={3000}
+        />
+        <ScrollToTop />
         </body>
     </html>
   );

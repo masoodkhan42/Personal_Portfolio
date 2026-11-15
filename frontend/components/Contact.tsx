@@ -4,6 +4,7 @@ import React, { useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import { toast } from 'sonner';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -74,40 +75,49 @@ export default function Contact() {
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setStatus('submitting');
+  e.preventDefault();
+  setStatus('submitting');
 
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+  try {
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
 
-      const result = await response.json();
+    const result = await response.json();
 
-      if (!response.ok || !result.success) {
-        throw new Error(result.error || 'Failed to send message.');
-      }
+    if (!response.ok || !result.success) {
+      throw new Error(result.error || 'Failed to send message.');
+    }
 
-      setStatus('submitted');
-      setFormData({
-        firstName: '',
-        email: '',
-        message: '',
-      });
-    } catch (error) {
-      console.error('Submission error:', error);
-      alert(
+    setStatus('submitted');
+
+    toast.success('Message sent successfully!', {
+      description: 'Thank you for reaching out. I will get back to you soon.',
+    });
+
+    setFormData({
+      firstName: '',
+      email: '',
+      message: '',
+    });
+
+  } catch (error) {
+    console.error('Submission error:', error);
+
+    toast.error('Failed to send message', {
+      description:
         error instanceof Error
           ? error.message
-          : 'Something went wrong. Please try again.'
-      );
-      setStatus('idle');
-    }
-  };
+          : 'Something went wrong. Please try again.',
+    });
+
+    setStatus('idle');
+  }
+};
 
   return (
     <section

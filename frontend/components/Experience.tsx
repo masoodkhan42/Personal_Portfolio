@@ -223,10 +223,7 @@ export default function ExperiencePage() {
             </h1>
           </div>
 
-          <p className="experience-intro max-w-[340px] pb-1 text-[12px] leading-[1.7] text-[#555d79] sm:text-[13px]">
-            Hands-on technical internships and team-driven software delivery
-            in fast-paced software environments.
-          </p>
+          
         </div>
 
         {/* Experience Container */}
@@ -257,7 +254,7 @@ export default function ExperiencePage() {
 
                 <span className="flex items-center gap-1.5">
                   <ClockIcon />
-                  April – June (2 Months)
+                  April – July
                 </span>
               </div>
             </div>
