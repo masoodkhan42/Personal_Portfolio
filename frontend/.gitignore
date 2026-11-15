@@ -36,7 +36,7 @@ yarn-error.log*
 # vercel
 .vercel
 
-pic.jpg
+/public/pic.jpg
 
 # typescript
 *.tsbuildinfo

@@ -56,7 +56,7 @@ export async function POST(request: Request) {
 
     const data = await resend.emails.send({
       from: 'portfolio <onboarding@resend.dev>', // Replace with your verified domain in production
-      to: ['m.masood211342@gmail.com'], // Where you want to receive the message
+      to: , // Where you want to receive the message
       subject: `${name} Visited Your Portfolio`,
       html: `
         <h2>New Message</h2>
