@@ -134,20 +134,20 @@ export default function About() {
         </div>
 
         {/* Right Image */}
-        <div className="preview-card flex min-w-0 justify-center sm:justify-end">
-          <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl border border-neutral-200 bg-neutral-100 shadow-md sm:max-w-[300px] sm:rounded-2xl md:max-w-[340px]">
+        <div className="preview-card flex min-w-0 justify-center pt-6 sm:justify-end sm:pt-0 lg:pr-8 xl:pr-12">
+  <div className="relative aspect-square w-full max-w-[300px] overflow-hidden rounded-full border-4 border-white shadow-xl ring-2 ring-neutral-200 sm:max-w-[320px] md:max-w-[360px] lg:max-w-[400px] xl:max-w-[430px]">
 
-            <Image
-              src="/pic.jpg"
-              alt="Muhammad Masood"
-              fill
-              priority
-              sizes="(max-width: 640px) 50vw, 340px"
-              className="object-cover object-top transition-transform duration-700 hover:scale-105"
-            />
+    <Image
+      src="/mypicture.webp"
+      alt="Muhammad Masood"
+      fill
+      priority
+      sizes="(max-width: 640px) 80vw, (max-width: 1024px) 360px, 430px"
+      className="object-cover object-center scale-110 transition-transform duration-700 hover:scale-125"
+    />
 
-          </div>
-        </div>
+  </div>
+</div>
 
       </div>
     </section>
